@@ -15,7 +15,7 @@ export const getProducts = async (req: Request, res: Response) => {
     size,
     categoryId,
     name,
-    id,
+    id
   }: {
     size: string | null;
     categoryId: string | null;
