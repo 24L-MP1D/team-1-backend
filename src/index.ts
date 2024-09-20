@@ -1,5 +1,5 @@
 import { createProduct, getProducts } from "../functions/product";
-import { createUser } from "../functions/user";
+import { checkUser, createUser } from "../functions/user";
 import connectDB from "../db";
 
 connectDB();
@@ -29,6 +29,8 @@ app.post("/product/create", createProduct);
 app.get("/product/list", getProducts);
 
 app.post("/user/create", createUser);
+
+app.post("/user/login", checkUser);
 
 // app.put("/saved/create", )
 
