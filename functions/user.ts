@@ -9,15 +9,13 @@ export const createUser = (req: Request, res: Response) => {
   const {
     name,
     email,
-    password
+    password,
   }: { name: string; email: string; password: string } = req.body;
-  console.log(name, email, password);
 
   try {
     var salt = bcrypt.genSaltSync(Number(process.env.saltNumber));
     const hashedPass = bcrypt.hashSync(password, salt);
     const cartId = uuid();
-    console.log(cartId);
     User.create({
       userName: name,
       email: email,
@@ -27,7 +25,7 @@ export const createUser = (req: Request, res: Response) => {
       zipCode: 0,
       cartId: cartId,
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
     });
     return res.send("success");
   } catch (error) {
@@ -35,17 +33,18 @@ export const createUser = (req: Request, res: Response) => {
   }
 };
 
-export const checkUser = (req: Request, res: Response) => {
+export const checkUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
-  let isAutenticated = true;
-
+  const user = await User.findOne({ email }).select({ password: 1 });
+  if (!user) {
+    return res.sendStatus(401); // User not found
+  }
+  const isAutenticated = bcrypt.compareSync(password, user?.password);
   try {
-    console.log(User.findOne(email));
-
     if (isAutenticated) {
       const token = jwt.sign({ email }, "Secret Key", {
-        expiresIn: "1h"
+        expiresIn: "1h",
       });
       return res.json(token);
     } else {
