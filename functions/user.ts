@@ -5,6 +5,8 @@ const bcrypt = require("bcryptjs");
 const { uuid } = require("uuidv4");
 const jwt = require("jsonwebtoken");
 
+
+
 export const createUser = (req: Request, res: Response) => {
   const {
     name,
@@ -38,12 +40,12 @@ export const checkUser = async (req: Request, res: Response) => {
 
   const user = await User.findOne({ email }).select({ password: 1 });
   if (!user) {
-    return res.sendStatus(401); // User not found
+    return res.sendStatus(401); 
   }
   const isAutenticated = bcrypt.compareSync(password, user?.password);
   try {
     if (isAutenticated) {
-      const token = jwt.sign({ email }, "Secret Key", {
+      const token = jwt.sign({ email, id: user.id }, process.env.secretKey, {
         expiresIn: "1h",
       });
       return res.json(token);
