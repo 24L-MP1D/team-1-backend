@@ -1,4 +1,10 @@
-import { createProduct, getProducts } from "../functions/product";
+import {
+  createProduct,
+  fetchSavedProduct,
+  getProducts,
+  saveProduct,
+  unsaveProduct,
+} from "../functions/product";
 import { checkUser, createUser } from "../functions/user";
 import connectDB from "../db";
 
@@ -7,12 +13,17 @@ connectDB();
 // src/index.ts
 const express = require("express");
 
+const cors = require("cors");
 // express
 const app = express();
-//body parser
 
 const PORT = process.env.PORT || 5000;
 
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 app.use(express.json());
 
 // app.get("/user/create", async (req: any, res: any) => {
@@ -26,11 +37,17 @@ app.use(express.json());
 
 app.post("/product/create", createProduct);
 
-app.get("/product/list", getProducts);
+app.post("/product/list", getProducts);
 
 app.post("/user/create", createUser);
 
 app.post("/user/login", checkUser);
+
+app.post("/product/save", saveProduct);
+
+app.delete("/product/unsave", unsaveProduct);
+
+app.post("/product/getSaved", fetchSavedProduct);
 
 // app.put("/saved/create", )
 

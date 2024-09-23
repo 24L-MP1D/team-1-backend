@@ -1,5 +1,6 @@
 import Product from "../models/product";
 import { Response, Request } from "express";
+import savedItem from "../models/saved";
 
 export const createProduct = (req: Request, res: Response) => {
   try {
@@ -15,7 +16,7 @@ export const getProducts = async (req: Request, res: Response) => {
     size,
     categoryId,
     name,
-    id
+    id,
   }: {
     size: [string] | null;
     categoryId: [string] | null;
@@ -45,5 +46,33 @@ export const getProducts = async (req: Request, res: Response) => {
     return res.status(200).json(prods);
   } catch (error) {
     console.error(error);
+    res.status(501).send("idk whaz wrong");
+  }
+};
+
+export const saveProduct = (req: Request, res: Response) => {
+  try {
+    savedItem.create(req.body);
+    res.send("Success");
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const unsaveProduct = async (req: Request, res: Response) => {
+  try {
+    await savedItem.deleteOne(req.body);
+    res.send("success");
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const fetchSavedProduct = async (req: Request, res: Response) => {
+  try {
+    const items = await savedItem.find(req.body);
+    res.json(items);
+  } catch (e) {
+    console.error(e);
   }
 };
