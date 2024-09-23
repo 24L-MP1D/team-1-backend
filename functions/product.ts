@@ -2,6 +2,8 @@ import Product from "../models/product";
 import { Response, Request } from "express";
 import savedItem from "../models/saved";
 
+const jwt = require("jsonwebtoken");
+
 export const createProduct = (req: Request, res: Response) => {
   try {
     const prod = Product.create(req.body);
@@ -16,7 +18,7 @@ export const getProducts = async (req: Request, res: Response) => {
     size,
     categoryId,
     name,
-    id,
+    id
   }: {
     size: [string] | null;
     categoryId: [string] | null;
@@ -52,7 +54,10 @@ export const getProducts = async (req: Request, res: Response) => {
 
 export const saveProduct = (req: Request, res: Response) => {
   try {
-    savedItem.create(req.body);
+    const { productId } = req.body;
+    const token = req.headers["authtoken"];
+    const userId = jwt.decode(token).id;
+    savedItem.create({ productId, userId });
     res.send("Success");
   } catch (e) {
     console.error(e);
@@ -61,7 +66,10 @@ export const saveProduct = (req: Request, res: Response) => {
 
 export const unsaveProduct = async (req: Request, res: Response) => {
   try {
-    await savedItem.deleteOne(req.body);
+    const { productId } = req.body;
+    const token = req.headers["authtoken"];
+    const userId = jwt.decode(token).id;
+    await savedItem.deleteOne({ productId, userId });
     res.send("success");
   } catch (e) {
     console.error(e);

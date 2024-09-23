@@ -3,10 +3,11 @@ import {
   fetchSavedProduct,
   getProducts,
   saveProduct,
-  unsaveProduct,
+  unsaveProduct
 } from "../functions/product";
 import { checkUser, createUser } from "../functions/user";
 import connectDB from "../db";
+import checkToken from "../functions/checkToken";
 
 connectDB();
 
@@ -21,7 +22,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:3000"
   })
 );
 app.use(express.json());
@@ -35,7 +36,7 @@ app.use(express.json());
 //   res.json(user);
 // });
 
-app.post("/product/create", createProduct);
+app.post("/product/create", checkToken, createProduct);
 
 app.post("/product/list", getProducts);
 
@@ -43,11 +44,11 @@ app.post("/user/create", createUser);
 
 app.post("/user/login", checkUser);
 
-app.post("/product/save", saveProduct);
+app.post("/product/save", checkToken, saveProduct);
 
-app.delete("/product/unsave", unsaveProduct);
+app.post("/product/unsave", checkToken, unsaveProduct);
 
-app.post("/product/getSaved", fetchSavedProduct);
+app.post("/product/getSaved", checkToken, fetchSavedProduct);
 
 // app.put("/saved/create", )
 
