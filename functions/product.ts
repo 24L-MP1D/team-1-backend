@@ -15,24 +15,23 @@ export const getProducts = async (req: Request, res: Response) => {
     size,
     categoryId,
     name,
-    id,
+    id
   }: {
-    size: string | null;
-    categoryId: string | null;
+    size: [string] | null;
+    categoryId: [string] | null;
     name: string | null;
     id: string | null;
   } = req.body;
   try {
     const query: any = {};
 
-    if (size) {
-      query.size = { $elemMatch: { Name: size, qty: { $gt: 0 } } };
+    if (size && size.length) {
+      query.size = { $elemMatch: { Name: { $in: size }, qty: { $gt: 0 } } };
     }
 
-    if (categoryId) {
-      query.categoryId = categoryId;
+    if (categoryId && categoryId.length) {
+      query.categoryId = { $in: categoryId };
     }
-
     if (name) {
       query.productName = { $regex: `${name}`, $options: "i" };
     }

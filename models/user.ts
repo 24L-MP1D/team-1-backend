@@ -2,16 +2,15 @@ import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 
 const userSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    minLength: 10,
-    required: true,
-    lowercase: true,
-  },
+  userName: String,
+  email: String,
+  phoneNumber: String,
+  password: String,
+  address: String,
+  zipCode: Number,
+  cartId: String,
+  createdAt: Date,
+  updatedAt: Date
 });
 
 const User = model("User", userSchema);
