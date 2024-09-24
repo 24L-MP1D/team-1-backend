@@ -89,8 +89,9 @@ export const unsaveProduct = async (req: Request, res: Response) => {
 };
 
 export const fetchSavedProduct = async (req: Request, res: Response) => {
+  const id = jwt.decode(req.headers["authtoken"]).id;
   try {
-    const items = await savedItem.find(req.body);
+    const items = await savedItem.find({ userId: id });
     res.json(items);
   } catch (e) {
     console.error(e);
