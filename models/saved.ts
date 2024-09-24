@@ -3,7 +3,7 @@ const { Schema, model, SchemaType } = mongoose;
 
 const savedSchema = new Schema({
   userId: String,
-  productId: String,
+  productId: String
 });
 
 const savedItem = model("savedItem", savedSchema);

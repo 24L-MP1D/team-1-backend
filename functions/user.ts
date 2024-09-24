@@ -46,7 +46,7 @@ export const checkUser = async (req: Request, res: Response) => {
   try {
     if (isAutenticated) {
       const token = jwt.sign({ email, id: user.id }, process.env.secretKey, {
-        expiresIn: "1h",
+        expiresIn: "3h",
       });
       return res.json(token);
     } else {

@@ -28,6 +28,9 @@ export const getProducts = async (req: Request, res: Response) => {
   try {
     const query: any = {};
 
+    const token = req.headers["authtoken"];
+    const userId = jwt.decode(token).id;
+
     if (size && size.length) {
       query.size = { $elemMatch: { Name: { $in: size }, qty: { $gt: 0 } } };
     }
@@ -45,7 +48,16 @@ export const getProducts = async (req: Request, res: Response) => {
 
     const prods = await Product.find(query);
 
-    return res.status(200).json(prods);
+    const savedItems = await savedItem.find({ userId });
+
+    const savedProductIds = new Set(savedItems.map(item => item.productId));
+
+    const productsWithSelectionStatus = prods.map(product => ({
+      ...product.toObject(),
+      isSelected: savedProductIds.has(product._id.toString())
+    }));
+
+    return res.status(200).json(productsWithSelectionStatus);
   } catch (error) {
     console.error(error);
     res.status(501).send("idk whaz wrong");
