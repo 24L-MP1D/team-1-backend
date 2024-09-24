@@ -50,7 +50,9 @@ export const getProducts = async (req: Request, res: Response) => {
 
     const savedItems = await savedItem.find({ userId });
 
-    const savedProductIds = new Set(savedItems.map(item => item.productId));
+    const savedProductIds = new Set(
+      savedItems.map(item => item.productId.toString())
+    );
 
     const productsWithSelectionStatus = prods.map(product => ({
       ...product.toObject(),

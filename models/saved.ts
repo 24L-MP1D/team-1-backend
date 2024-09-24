@@ -1,9 +1,17 @@
 import mongoose from "mongoose";
-const { Schema, model, SchemaType } = mongoose;
+const { Schema, model, SchemaTypes } = mongoose;
 
 const savedSchema = new Schema({
-  userId: String,
-  productId: String
+  userId: {
+    type: SchemaTypes.ObjectId,
+    ref: "User",
+    required: true
+  },
+  productId: {
+    type: SchemaTypes.ObjectId,
+    ref: "Product",
+    required: true
+  }
 });
 
 const savedItem = model("savedItem", savedSchema);
