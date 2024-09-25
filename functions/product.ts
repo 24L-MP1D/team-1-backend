@@ -18,7 +18,7 @@ export const getProducts = async (req: Request, res: Response) => {
     size,
     categoryId,
     name,
-    id
+    id,
   }: {
     size: [string] | null;
     categoryId: [string] | null;
@@ -27,9 +27,6 @@ export const getProducts = async (req: Request, res: Response) => {
   } = req.body;
   try {
     const query: any = {};
-
-    const token = req.headers["authtoken"];
-    const userId = jwt.decode(token).id;
 
     if (size && size.length) {
       query.size = { $elemMatch: { Name: { $in: size }, qty: { $gt: 0 } } };
@@ -48,15 +45,25 @@ export const getProducts = async (req: Request, res: Response) => {
 
     const prods = await Product.find(query);
 
+    return res.send(
+      prods.map((product) => ({
+        ...product.toObject(),
+        isSelected: false,
+      }))
+    );
+
+    const token = req.headers["authtoken"];
+    const userId = jwt.decode(token).id;
+
     const savedItems = await savedItem.find({ userId });
 
     const savedProductIds = new Set(
-      savedItems.map(item => item.productId.toString())
+      savedItems.map((item) => item.productId.toString())
     );
 
-    const productsWithSelectionStatus = prods.map(product => ({
+    const productsWithSelectionStatus = prods.map((product) => ({
       ...product.toObject(),
-      isSelected: savedProductIds.has(product._id.toString())
+      isSelected: savedProductIds.has(product._id.toString()),
     }));
 
     return res.status(200).json(productsWithSelectionStatus);
