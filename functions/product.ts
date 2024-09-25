@@ -28,6 +28,8 @@ export const getProducts = async (req: Request, res: Response) => {
   try {
     const query: any = {};
 
+    const token = req.headers["authtoken"];
+
     if (size && size.length) {
       query.size = { $elemMatch: { Name: { $in: size }, qty: { $gt: 0 } } };
     }
@@ -44,15 +46,15 @@ export const getProducts = async (req: Request, res: Response) => {
     }
 
     const prods = await Product.find(query);
+    if (!token) {
+      return res.send(
+        prods.map((product) => ({
+          ...product.toObject(),
+          isSelected: false,
+        }))
+      );
+    }
 
-    return res.send(
-      prods.map((product) => ({
-        ...product.toObject(),
-        isSelected: false,
-      }))
-    );
-
-    const token = req.headers["authtoken"];
     const userId = jwt.decode(token).id;
 
     const savedItems = await savedItem.find({ userId });
