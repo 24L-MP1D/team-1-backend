@@ -15,7 +15,7 @@
     "thumbnails": "url",
     "images": [],
     "coupon": "abc",
-    "salePercent": "15%",
+    "salePercent": 15,
     "description": "Comfortable blue sweatshirt",
     "viewsCount": 150,
     "createdAt": "2024-02-01",
@@ -37,14 +37,14 @@
     "thumbnails": "url",
     "images": [],
     "coupon": "def",
-    "salePercent": "20%",
+    "salePercent": 20,
     "description": "Stylish green jacket",
     "viewsCount": 200,
     "createdAt": "2024-03-01",
     "updatedAt": "2024-03-10"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 10 },
       { "Name": "S", "qty": 12 },
       { "Name": "M", "qty": 15 },
@@ -59,14 +59,14 @@
     "thumbnails": "url",
     "images": [],
     "coupon": "ghi",
-    "salePercent": "5%",
+    "salePercent": 5,
     "description": "Classic black t-shirt",
     "viewsCount": 250,
     "createdAt": "2024-04-01",
     "updatedAt": "2024-04-05"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 25 },
       { "Name": "S", "qty": 3 },
       { "Name": "M", "qty": 7 },
@@ -81,14 +81,14 @@
     "thumbnails": "url",
     "images": [],
     "coupon": "jkl",
-    "salePercent": "25%",
+    "salePercent": 25,
     "description": "Warm grey hoodie",
     "viewsCount": 180,
     "createdAt": "2024-05-01",
     "updatedAt": "2024-05-10"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 8 },
       { "Name": "S", "qty": 15 },
       { "Name": "M", "qty": 20 },
@@ -103,14 +103,14 @@
     "thumbnails": "url",
     "images": [],
     "coupon": "mno",
-    "salePercent": "30%",
+    "salePercent": 30,
     "description": "Cozy yellow sweater",
     "viewsCount": 220,
     "createdAt": "2024-06-01",
     "updatedAt": "2024-06-15"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 30 },
       { "Name": "S", "qty": 5 },
       { "Name": "M", "qty": 8 },
@@ -125,14 +125,14 @@
     "thumbnails": "url",
     "images": [],
     "coupon": "pqr",
-    "salePercent": "10%",
+    "salePercent": 10,
     "description": "Fashionable purple vest",
     "viewsCount": 190,
     "createdAt": "2024-07-01",
     "updatedAt": "2024-07-10"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 5 },
       { "Name": "S", "qty": 20 },
       { "Name": "M", "qty": 18 },
@@ -147,14 +147,14 @@
     "thumbnails": "url",
     "images": [],
     "coupon": "stu",
-    "salePercent": "15%",
+    "salePercent": 15,
     "description": "Bright orange jacket",
     "viewsCount": 230,
     "createdAt": "2024-08-01",
     "updatedAt": "2024-08-15"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 10 },
       { "Name": "S", "qty": 8 },
       { "Name": "M", "qty": 10 },
@@ -169,14 +169,14 @@
     "thumbnails": "url",
     "images": [],
     "coupon": "vwx",
-    "salePercent": "20%",
+    "salePercent": 20,
     "description": "Soft pink t-shirt",
     "viewsCount": 170,
     "createdAt": "2024-09-01",
     "updatedAt": "2024-09-10"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 12 },
       { "Name": "S", "qty": 14 },
       { "Name": "M", "qty": 16 },
@@ -191,7 +191,7 @@
     "thumbnails": "url",
     "images": [],
     "coupon": "yz",
-    "salePercent": "5%",
+    "salePercent": 5,
     "description": "Classic white hoodie",
     "viewsCount": 140,
     "createdAt": "2024-10-01",
@@ -199,7 +199,7 @@
   },
 
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 15 },
       { "Name": "S", "qty": 10 },
       { "Name": "M", "qty": 5 },
@@ -214,14 +214,14 @@
     "thumbnails": "url",
     "images": [],
     "coupon": "abc1",
-    "salePercent": "10%",
+    "salePercent": 10,
     "description": "Comfortable teal sweatshirt",
     "viewsCount": 160,
     "createdAt": "2024-11-01",
     "updatedAt": "2024-11-10"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 22 },
       { "Name": "S", "qty": 11 },
       { "Name": "M", "qty": 14 },
@@ -236,14 +236,14 @@
     "thumbnails": "url",
     "images": [],
     "coupon": "def1",
-    "salePercent": "15%",
+    "salePercent": 15,
     "description": "Elegant maroon jacket",
     "viewsCount": 210,
     "createdAt": "2024-12-01",
     "updatedAt": "2024-12-15"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 18 },
       { "Name": "S", "qty": 7 },
       { "Name": "M", "qty": 13 },
@@ -258,14 +258,14 @@
     "thumbnails": "url",
     "images": [],
     "coupon": "ghi1",
-    "salePercent": "20%",
+    "salePercent": 20,
     "description": "Warm brown hoodie",
     "viewsCount": 180,
     "createdAt": "2024-01-10",
     "updatedAt": "2024-01-20"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 5 },
       { "Name": "S", "qty": 15 },
       { "Name": "M", "qty": 25 },
@@ -274,21 +274,20 @@
       { "Name": "2XL", "qty": 5 },
       { "Name": "3XL", "qty": 2 }
     ],
-    "mistake I assume": "14",
     "productName": "Beige Sweater",
     "categoryId": "Sweater",
     "price": 1250,
     "thumbnails": "url",
     "images": [],
     "coupon": "jkl1",
-    "salePercent": "25%",
+    "salePercent": 25,
     "description": "Soft beige sweater",
     "viewsCount": 170,
     "createdAt": "2024-02-10",
     "updatedAt": "2024-02-20"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 20 },
       { "Name": "S", "qty": 12 },
       { "Name": "M", "qty": 18 },
@@ -303,14 +302,14 @@
     "thumbnails": "url",
     "images": [],
     "coupon": "mno1",
-    "salePercent": "10%",
+    "salePercent": 10,
     "description": "Stylish navy vest",
     "viewsCount": 190,
     "createdAt": "2024-03-10",
     "updatedAt": "2024-03-20"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 25 },
       { "Name": "S", "qty": 7 },
       { "Name": "M", "qty": 10 },
@@ -325,14 +324,14 @@
     "thumbnails": "url",
     "images": [],
     "coupon": "pqr1",
-    "salePercent": "15%",
+    "salePercent": 15,
     "description": "Bright cyan hoodie",
     "viewsCount": 160,
     "createdAt": "2024-04-10",
     "updatedAt": "2024-04-20"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 30 },
       { "Name": "S", "qty": 10 },
       { "Name": "M", "qty": 15 },
@@ -347,14 +346,14 @@
     "thumbnails": "url",
     "images": [],
     "coupon": "stu1",
-    "salePercent": "20%",
+    "salePercent": 20,
     "description": "Cool mint sweatshirt",
     "viewsCount": 180,
     "createdAt": "2024-05-10",
     "updatedAt": "2024-05-20"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 12 },
       { "Name": "S", "qty": 8 },
       { "Name": "M", "qty": 16 },
@@ -369,14 +368,14 @@
     "thumbnails": "url",
     "images": [],
     "coupon": "vwx1",
-    "salePercent": "15%",
+    "salePercent": 15,
     "description": "Sky blue jacket",
     "viewsCount": 210,
     "createdAt": "2024-06-10",
     "updatedAt": "2024-06-20"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 18 },
       { "Name": "S", "qty": 15 },
       { "Name": "M", "qty": 12 },
@@ -385,21 +384,20 @@
       { "Name": "2XL", "qty": 5 },
       { "Name": "3XL", "qty": 3 }
     ],
-    "mistake I assume": "19",
     "productName": "Coral Hoodie",
     "categoryId": "Hoodie",
     "price": 1350,
     "thumbnails": "url",
     "images": [],
     "coupon": "yz1",
-    "salePercent": "20%",
+    "salePercent": 20,
     "description": "Bright coral hoodie",
     "viewsCount": 220,
     "createdAt": "2024-07-10",
     "updatedAt": "2024-07-20"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 25 },
       { "Name": "S", "qty": 5 },
       { "Name": "M", "qty": 10 },
@@ -408,21 +406,20 @@
       { "Name": "2XL", "qty": 7 },
       { "Name": "3XL", "qty": 4 }
     ],
-    "mistake I assume": "20",
     "productName": "Lavender Sweatshirt",
     "categoryId": "Sweatshirt",
     "price": 1200,
     "thumbnails": "url",
     "images": [],
     "coupon": "abc2",
-    "salePercent": "10%",
+    "salePercent": 10,
     "description": "Soft lavender sweatshirt",
     "viewsCount": 190,
     "createdAt": "2024-08-10",
     "updatedAt": "2024-08-20"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 30 },
       { "Name": "S", "qty": 8 },
       { "Name": "M", "qty": 14 },
@@ -431,21 +428,20 @@
       { "Name": "2XL", "qty": 15 },
       { "Name": "3XL", "qty": 7 }
     ],
-    "mistake I assume": "21",
     "productName": "Olive Jacket",
     "categoryId": "Jacket",
     "price": 1600,
     "thumbnails": "url",
     "images": [],
     "coupon": "def2",
-    "salePercent": "15%",
+    "salePercent": 15,
     "description": "Stylish olive jacket",
     "viewsCount": 200,
     "createdAt": "2024-09-10",
     "updatedAt": "2024-09-20"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 22 },
       { "Name": "S", "qty": 10 },
       { "Name": "M", "qty": 15 },
@@ -454,21 +450,20 @@
       { "Name": "2XL", "qty": 12 },
       { "Name": "3XL", "qty": 9 }
     ],
-    "mistake I assume": "22",
     "productName": "Rust Sweater",
     "categoryId": "Sweater",
     "price": 1300,
     "thumbnails": "url",
     "images": [],
     "coupon": "ghi2",
-    "salePercent": "20%",
+    "salePercent": 20,
     "description": "Warm rust sweater",
     "viewsCount": 220,
     "createdAt": "2024-10-10",
     "updatedAt": "2024-10-20"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 18 },
       { "Name": "S", "qty": 12 },
       { "Name": "M", "qty": 10 },
@@ -477,21 +472,20 @@
       { "Name": "2XL", "qty": 7 },
       { "Name": "3XL", "qty": 5 }
     ],
-    "mistake I assume": "23",
     "productName": "Charcoal Hoodie",
     "categoryId": "Hoodie",
     "price": 1400,
     "thumbnails": "url",
     "images": [],
     "coupon": "jkl2",
-    "salePercent": "15%",
+    "salePercent": 15,
     "description": "Charcoal grey hoodie",
     "viewsCount": 190,
     "createdAt": "2024-11-10",
     "updatedAt": "2024-11-20"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 25 },
       { "Name": "S", "qty": 10 },
       { "Name": "M", "qty": 12 },
@@ -500,21 +494,20 @@
       { "Name": "2XL", "qty": 9 },
       { "Name": "3XL", "qty": 4 }
     ],
-    "mistake I assume": "24",
     "productName": "Rose Sweatshirt",
     "categoryId": "Sweatshirt",
     "price": 1350,
     "thumbnails": "url",
     "images": [],
     "coupon": "mno2",
-    "salePercent": "10%",
+    "salePercent": 10,
     "description": "Elegant rose sweatshirt",
     "viewsCount": 200,
     "createdAt": "2024-12-10",
     "updatedAt": "2024-12-20"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 20 },
       { "Name": "S", "qty": 15 },
       { "Name": "M", "qty": 10 },
@@ -523,21 +516,20 @@
       { "Name": "2XL", "qty": 12 },
       { "Name": "3XL", "qty": 7 }
     ],
-    "mistake I assume": "25",
     "productName": "Emerald Jacket",
     "categoryId": "Jacket",
     "price": 1550,
     "thumbnails": "url",
     "images": [],
     "coupon": "pqr2",
-    "salePercent": "15%",
+    "salePercent": 15,
     "description": "Rich emerald jacket",
     "viewsCount": 220,
     "createdAt": "2024-01-15",
     "updatedAt": "2024-01-25"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 18 },
       { "Name": "S", "qty": 14 },
       { "Name": "M", "qty": 20 },
@@ -546,21 +538,20 @@
       { "Name": "2XL", "qty": 7 },
       { "Name": "3XL", "qty": 3 }
     ],
-    "mistake I assume": "26",
     "productName": "Sand Hoodie",
     "categoryId": "Hoodie",
     "price": 1450,
     "thumbnails": "url",
     "images": [],
     "coupon": "stu2",
-    "salePercent": "20%",
+    "salePercent": 20,
     "description": "Soft sand hoodie",
     "viewsCount": 180,
     "createdAt": "2024-02-15",
     "updatedAt": "2024-02-25"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 12 },
       { "Name": "S", "qty": 8 },
       { "Name": "M", "qty": 16 },
@@ -569,21 +560,20 @@
       { "Name": "2XL", "qty": 10 },
       { "Name": "3XL", "qty": 5 }
     ],
-    "mistake I assume": "27",
     "productName": "Aqua Sweatshirt",
     "categoryId": "Sweatshirt",
     "price": 1200,
     "thumbnails": "url",
     "images": [],
     "coupon": "vwx2",
-    "salePercent": "15%",
+    "salePercent": 15,
     "description": "Refreshing aqua sweatshirt",
     "viewsCount": 190,
     "createdAt": "2024-03-15",
     "updatedAt": "2024-03-25"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 25 },
       { "Name": "S", "qty": 7 },
       { "Name": "M", "qty": 12 },
@@ -592,21 +582,20 @@
       { "Name": "2XL", "qty": 6 },
       { "Name": "3XL", "qty": 3 }
     ],
-    "mistake I assume": "28",
     "productName": "Copper Jacket",
     "categoryId": "Jacket",
     "price": 1400,
     "thumbnails": "url",
     "images": [],
     "coupon": "yz2",
-    "salePercent": "10%",
+    "salePercent": 10,
     "description": "Stylish copper jacket",
     "viewsCount": 200,
     "createdAt": "2024-04-15",
     "updatedAt": "2024-04-25"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 20 },
       { "Name": "S", "qty": 10 },
       { "Name": "M", "qty": 15 },
@@ -615,21 +604,20 @@
       { "Name": "2XL", "qty": 12 },
       { "Name": "3XL", "qty": 8 }
     ],
-    "mistake I assume": "29",
     "productName": "Teal Hoodie",
     "categoryId": "Hoodie",
     "price": 1300,
     "thumbnails": "url",
     "images": [],
     "coupon": "abc3",
-    "salePercent": "20%",
+    "salePercent": 20,
     "description": "Vibrant teal hoodie",
     "viewsCount": 220,
     "createdAt": "2024-05-15",
     "updatedAt": "2024-05-25"
   },
   {
-    "size": [
+    "sizes": [
       { "Name": "Free", "qty": 15 },
       { "Name": "S", "qty": 12 },
       { "Name": "M", "qty": 18 },
@@ -638,14 +626,13 @@
       { "Name": "2XL", "qty": 5 },
       { "Name": "3XL", "qty": 3 }
     ],
-    "mistake I assume": "30",
     "productName": "Plum Sweatshirt",
     "categoryId": "Sweatshirt",
     "price": 1350,
     "thumbnails": "url",
     "images": [],
     "coupon": "def3",
-    "salePercent": "15%",
+    "salePercent": 15,
     "description": "Elegant plum sweatshirt",
     "viewsCount": 210,
     "createdAt": "2024-06-15",

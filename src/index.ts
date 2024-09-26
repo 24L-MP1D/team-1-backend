@@ -5,6 +5,9 @@ import {
   saveProduct,
   unsaveProduct
 } from "../functions/product";
+
+import { addToOrder } from "../functions/order";
+
 import { checkUser, createUser } from "../functions/user";
 import connectDB from "../db";
 import checkToken from "../functions/checkToken";
@@ -50,6 +53,9 @@ app.post("/product/unsave", checkToken, unsaveProduct);
 
 app.post("/product/getSaved", checkToken, fetchSavedProduct);
 
+app.post("/order/create", checkToken, addToOrder);
+
+app.post("/order/get", checkToken, addToOrder);
 // app.put("/saved/create", )
 
 // app.get("/list", async (req: any, res: any) => {
