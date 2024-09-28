@@ -6,6 +6,11 @@ import {
   unsaveProduct
 } from "../functions/product";
 
+import {
+  createNewAdmin,
+  loginAdmin
+} from "../functions/admin_functions/adminAccout";
+
 import { addToOrder } from "../functions/order";
 
 import { checkUser, createUser } from "../functions/user";
@@ -30,14 +35,13 @@ app.use(
 );
 app.use(express.json());
 
-// app.get("/user/create", async (req: any, res: any) => {
-//   const user = await User.create({
-//     name: "Jesse Hall",
-//     email: "jesse@email.com",
-//   });
+// admin
 
-//   res.json(user);
-// });
+app.post("/admin/create", createNewAdmin);
+
+app.post("/admin/login", loginAdmin);
+
+// admin end
 
 app.post("/product/create", checkToken, createProduct);
 
