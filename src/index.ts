@@ -3,12 +3,14 @@ import {
   fetchSavedProduct,
   getProducts,
   saveProduct,
-  unsaveProduct
+  unsaveProduct,
 } from "../functions/product";
+
+import { getCategories } from "../functions/category";
 
 import {
   createNewAdmin,
-  loginAdmin
+  loginAdmin,
 } from "../functions/admin_functions/adminAccout";
 
 import { addToOrder } from "../functions/order";
@@ -30,7 +32,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: "http://localhost:3000"
+    origin: "http://localhost:3000",
   })
 );
 app.use(express.json());
@@ -42,6 +44,8 @@ app.post("/admin/create", createNewAdmin);
 app.post("/admin/login", loginAdmin);
 
 // admin end
+
+app.get("/product/category/list", getCategories);
 
 app.post("/product/create", checkToken, createProduct);
 
