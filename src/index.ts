@@ -3,14 +3,14 @@ import {
   fetchSavedProduct,
   getProducts,
   saveProduct,
-  unsaveProduct,
+  unsaveProduct
 } from "../functions/product";
 
 import { getCategories } from "../functions/category";
 
 import {
   createNewAdmin,
-  loginAdmin,
+  loginAdmin
 } from "../functions/admin_functions/adminAccout";
 
 import { addToOrder } from "../functions/order";
@@ -18,6 +18,8 @@ import { addToOrder } from "../functions/order";
 import { checkUser, createUser } from "../functions/user";
 import connectDB from "../db";
 import checkToken from "../functions/checkToken";
+
+import { uploadRouter } from "../functions/Routers/uploadRouter";
 
 connectDB();
 
@@ -32,10 +34,13 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:3000"
   })
 );
+
 app.use(express.json());
+
+app.use(uploadRouter);
 
 // admin
 
