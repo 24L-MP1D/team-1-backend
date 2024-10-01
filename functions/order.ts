@@ -17,7 +17,7 @@ export const addToOrder = async (req: Request, res: Response) => {
     description,
     amountPaid,
     orderType,
-    details,
+    details
   } = req.body;
 
   try {
@@ -36,7 +36,7 @@ export const addToOrder = async (req: Request, res: Response) => {
       description,
       orderType,
       details,
-      userId,
+      userId
     });
     res.json("success");
   } catch (e) {
@@ -75,7 +75,7 @@ export const updateProductDBOnOrder = async (detail: any) => {
     const newSizes = item.sizes; // Get the existing sizes
 
     // Find the specific size (make sure to use the correct case)
-    const sizeItem = newSizes.find((s) => s.Name === detail.size); // Use lowercase 'name'
+    const sizeItem = newSizes.find(s => s.Name === detail.size); // Use lowercase 'name'
 
     if (sizeItem) {
       sizeItem.qty += detail.amount; // Deduct the amount
