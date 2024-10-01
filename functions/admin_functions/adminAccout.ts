@@ -1,4 +1,4 @@
-import { Response, Request } from "express";
+import { Response, Request, NextFunction } from "express";
 import Admin from "../../models/admin";
 
 const bcrypt = require("bcryptjs");
@@ -19,7 +19,7 @@ export const createNewAdmin = (req: Request, res: Response) => {
 export const loginAdmin = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
-    
+
     const admin = await Admin.findOne({ email }).select({ password: 1 });
     if (!admin) {
       return res.sendStatus(401).json("");
@@ -39,3 +39,18 @@ export const loginAdmin = async (req: Request, res: Response) => {
   }
 };
 
+export const checkAdmin = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const token = req.headers["authtoken"];
+  const adminId = jwt.decode(token).id;
+  const isAdmin = await Admin.findById(adminId);
+
+  if (isAdmin) {
+    next();
+  } else {
+    res.status(401).send("non valid token");
+  }
+};
