@@ -1,6 +1,8 @@
 import { Response, Request } from "express";
 import Order from "../models/order";
 import Product from "../models/product";
+import Admin from "../models/admin";
+import User from "../models/user";
 
 const jwt = require("jsonwebtoken");
 
@@ -15,7 +17,7 @@ export const addToOrder = async (req: Request, res: Response) => {
     description,
     amountPaid,
     orderType,
-    details
+    details,
   } = req.body;
 
   try {
@@ -34,7 +36,7 @@ export const addToOrder = async (req: Request, res: Response) => {
       description,
       orderType,
       details,
-      userId
+      userId,
     });
     res.json("success");
   } catch (e) {
@@ -47,6 +49,17 @@ export const getOrders = async (req: Request, res: Response) => {
   try {
     const token = req.headers["authtoken"];
     const userId = jwt.decode(token).id;
+    const isAdmin = await Admin.findById(userId);
+    const isClient = await User.findById(userId);
+    if (isAdmin) {
+      const data = await Order.find();
+      res.status(200).send(data);
+    }
+    if (isClient) {
+      const data = await Order.find({ userId });
+      res.status(200).send(data);
+    }
+    console.log(isAdmin);
   } catch (e) {
     console.error(e);
   }
@@ -62,7 +75,7 @@ export const updateProductDBOnOrder = async (detail: any) => {
     const newSizes = item.sizes; // Get the existing sizes
 
     // Find the specific size (make sure to use the correct case)
-    const sizeItem = newSizes.find(s => s.Name === detail.size); // Use lowercase 'name'
+    const sizeItem = newSizes.find((s) => s.Name === detail.size); // Use lowercase 'name'
 
     if (sizeItem) {
       sizeItem.qty += detail.amount; // Deduct the amount
