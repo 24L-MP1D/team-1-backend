@@ -4,21 +4,12 @@ import savedItem from "../models/saved";
 
 const jwt = require("jsonwebtoken");
 
-export const createProduct = (req: Request, res: Response) => {
-  try {
-    const prod = Product.create(req.body);
-    return res.json();
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 export const getProducts = async (req: Request, res: Response) => {
   const {
     size,
     categoryId,
     name,
-    id
+    id,
   }: {
     size: [string] | null;
     categoryId: [string] | null;
@@ -49,9 +40,9 @@ export const getProducts = async (req: Request, res: Response) => {
     console.log(jwt.decode(token));
     if (!jwt.decode(token)) {
       return res.send(
-        prods.map(product => ({
+        prods.map((product) => ({
           ...product.toObject(),
-          isSelected: false
+          isSelected: false,
         }))
       );
     }
@@ -61,12 +52,12 @@ export const getProducts = async (req: Request, res: Response) => {
     const savedItems = await savedItem.find({ userId });
 
     const savedProductIds = new Set(
-      savedItems.map(item => item.productId.toString())
+      savedItems.map((item) => item.productId.toString())
     );
 
-    const productsWithSelectionStatus = prods.map(product => ({
+    const productsWithSelectionStatus = prods.map((product) => ({
       ...product.toObject(),
-      isSelected: savedProductIds.has(product._id.toString())
+      isSelected: savedProductIds.has(product._id.toString()),
     }));
 
     return res.status(200).json(productsWithSelectionStatus);

@@ -1,14 +1,16 @@
 import {
-  createProduct,
   fetchSavedProduct,
   getProducts,
   saveProduct,
   unsaveProduct,
 } from "../functions/product";
 
+import { createProduct } from "../functions/admin_functions/product";
+
 import { getCategories } from "../functions/category";
 
 import {
+  checkAdmin,
   createNewAdmin,
   loginAdmin,
 } from "../functions/admin_functions/adminAccout";
@@ -52,7 +54,7 @@ app.post("/admin/login", loginAdmin);
 
 app.get("/product/category/list", getCategories);
 
-app.post("/product/create", checkToken, createProduct);
+app.post("/product/create", checkAdmin, createProduct);
 
 app.post("/product/list", getProducts);
 
