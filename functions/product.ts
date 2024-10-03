@@ -9,7 +9,7 @@ export const getProducts = async (req: Request, res: Response) => {
     size,
     categoryId,
     name,
-    id,
+    id
   }: {
     size: [string] | null;
     categoryId: [string] | null;
@@ -22,7 +22,7 @@ export const getProducts = async (req: Request, res: Response) => {
     const token = req.headers["authtoken"];
 
     if (size && size.length) {
-      query.size = { $elemMatch: { Name: { $in: size }, qty: { $gt: 0 } } };
+      query.sizes = { $elemMatch: { Name: { $in: size }, qty: { $gt: 0 } } };
     }
 
     if (categoryId && categoryId.length) {
@@ -37,12 +37,12 @@ export const getProducts = async (req: Request, res: Response) => {
     }
 
     const prods = await Product.find(query);
-    console.log(jwt.decode(token));
+
     if (!jwt.decode(token)) {
       return res.send(
-        prods.map((product) => ({
+        prods.map(product => ({
           ...product.toObject(),
-          isSelected: false,
+          isSelected: false
         }))
       );
     }
@@ -52,13 +52,15 @@ export const getProducts = async (req: Request, res: Response) => {
     const savedItems = await savedItem.find({ userId });
 
     const savedProductIds = new Set(
-      savedItems.map((item) => item.productId.toString())
+      savedItems.map(item => item.productId.toString())
     );
 
-    const productsWithSelectionStatus = prods.map((product) => ({
+    const productsWithSelectionStatus = prods.map(product => ({
       ...product.toObject(),
-      isSelected: savedProductIds.has(product._id.toString()),
+      isSelected: savedProductIds.has(product._id.toString())
     }));
+
+    console.log(productsWithSelectionStatus);
 
     return res.status(200).json(productsWithSelectionStatus);
   } catch (error) {
