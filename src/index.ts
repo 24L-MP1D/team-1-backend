@@ -1,13 +1,29 @@
 import {
-  createProduct,
   fetchSavedProduct,
   getProducts,
   saveProduct,
   unsaveProduct
 } from "../functions/product";
+
+import { createProduct } from "../functions/admin_functions/product";
+
+import { getCategories } from "../functions/category";
+
+import {
+  checkAdmin,
+  createNewAdmin,
+  loginAdmin
+} from "../functions/admin_functions/adminAccout";
+
+import { addToOrder, getOrders } from "../functions/order";
+
 import { checkUser, createUser } from "../functions/user";
 import connectDB from "../db";
 import checkToken from "../functions/checkToken";
+
+import { uploadRouter } from "../functions/Routers/uploadRouter";
+
+import cartRouter from "../functions/cart";
 
 connectDB();
 
@@ -24,18 +40,24 @@ app.use(
     origin: "http://localhost:3000"
   })
 );
+
 app.use(express.json());
 
-// app.get("/user/create", async (req: any, res: any) => {
-//   const user = await User.create({
-//     name: "Jesse Hall",
-//     email: "jesse@email.com",
-//   });
+app.use(uploadRouter);
 
-//   res.json(user);
-// });
+app.use(cartRouter);
 
-app.post("/product/create", checkToken, createProduct);
+// admin
+
+app.post("/admin/create", createNewAdmin);
+
+app.post("/admin/login", loginAdmin);
+
+// admin end
+
+app.get("/product/category/list", getCategories);
+
+app.post("/product/create", checkAdmin, createProduct);
 
 app.post("/product/list", getProducts);
 
@@ -47,8 +69,11 @@ app.post("/product/save", checkToken, saveProduct);
 
 app.post("/product/unsave", checkToken, unsaveProduct);
 
-app.post("/product/getSaved", checkToken, fetchSavedProduct);
+app.get("/product/getSaved", checkToken, fetchSavedProduct);
 
+app.post("/order/create", checkToken, addToOrder);
+
+app.post("/order/get", checkToken, getOrders);
 // app.put("/saved/create", )
 
 // app.get("/list", async (req: any, res: any) => {

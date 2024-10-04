@@ -1,18 +1,13 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 const { Schema, SchemaTypes, model } = mongoose;
 
-{/*interface ICartItem extends Document {
-  users.id: string;
-  productId: string;
-  quantity: number;
-}
-*/}
 const cartItemSchema = new Schema({
-  users_id: { type: String, required: true },
-  product_id: { type: String, required: true },
+  userId: { type: Schema.Types.ObjectId, required: true, ref: "User" },
+  productId: { type: Schema.Types.ObjectId, required: true, ref: "Product" },
+  size: { type: String, require: true },
   qty: { type: Number, default: 1 },
 });
 
-const CartItem = model('CartItem', cartItemSchema);
+const CartItem = mongoose.model("CartItem", cartItemSchema);
 
 export default CartItem;
