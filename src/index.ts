@@ -11,14 +11,13 @@ import checkToken from "../functions/checkToken";
 
 connectDB();
 
-// src/index.ts
 const express = require("express");
 
 const cors = require("cors");
-// express
+
 const app = express();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 app.use(
   cors({
