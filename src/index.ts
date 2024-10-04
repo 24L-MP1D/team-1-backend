@@ -23,6 +23,8 @@ import checkToken from "../functions/checkToken";
 
 import { uploadRouter } from "../functions/Routers/uploadRouter";
 
+import cartRouter from "../functions/cart";
+
 connectDB();
 
 // src/index.ts
@@ -43,6 +45,8 @@ app.use(
 app.use(express.json());
 
 app.use(uploadRouter);
+
+app.use(cartRouter);
 
 // admin
 
