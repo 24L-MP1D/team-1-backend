@@ -2,7 +2,7 @@ import {
   fetchSavedProduct,
   getProducts,
   saveProduct,
-  unsaveProduct,
+  unsaveProduct
 } from "../functions/product";
 
 import { createProduct } from "../functions/admin_functions/product";
@@ -12,7 +12,7 @@ import { getCategories } from "../functions/category";
 import {
   checkAdmin,
   createNewAdmin,
-  loginAdmin,
+  loginAdmin
 } from "../functions/admin_functions/adminAccout";
 
 import { addToOrder, getOrders } from "../functions/order";
@@ -36,7 +36,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:3000"
   })
 );
 
@@ -66,7 +66,7 @@ app.post("/product/save", checkToken, saveProduct);
 
 app.post("/product/unsave", checkToken, unsaveProduct);
 
-app.post("/product/getSaved", checkToken, fetchSavedProduct);
+app.get("/product/getSaved", checkToken, fetchSavedProduct);
 
 app.post("/order/create", checkToken, addToOrder);
 

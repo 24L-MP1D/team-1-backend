@@ -6,8 +6,10 @@ const jwt = require("jsonwebtoken");
 
 export const createProduct = (req: Request, res: Response) => {
   try {
+    console.log(req.body);
     const prod = Product.create(req.body);
-    return res.json();
+
+    return res.json(prod);
   } catch (error) {
     console.error(error);
   }

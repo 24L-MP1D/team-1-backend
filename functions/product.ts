@@ -97,7 +97,21 @@ export const fetchSavedProduct = async (req: Request, res: Response) => {
   const id = jwt.decode(req.headers["authtoken"]).id;
   try {
     const items = await savedItem.find({ userId: id });
-    res.json(items);
+
+    const productIds = items.map(item => item.productId);
+
+    const products = await Product.find({ _id: { $in: productIds } });
+
+    const updatedItems = items.map(item => {
+      const product = products.find(
+        prod => prod._id.toString() === item.productId.toString()
+      );
+      return {
+        ...item.toObject(),
+        product: product || null
+      };
+    });
+    res.json(updatedItems);
   } catch (e) {
     console.error(e);
   }
