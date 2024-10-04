@@ -5,8 +5,6 @@ const bcrypt = require("bcryptjs");
 const { uuid } = require("uuidv4");
 const jwt = require("jsonwebtoken");
 
-
-
 export const createUser = (req: Request, res: Response) => {
   const {
     name,
@@ -40,7 +38,7 @@ export const checkUser = async (req: Request, res: Response) => {
 
   const user = await User.findOne({ email }).select({ password: 1 });
   if (!user) {
-    return res.sendStatus(401); 
+    return res.sendStatus(401);
   }
   const isAutenticated = bcrypt.compareSync(password, user?.password);
   try {
