@@ -8,11 +8,11 @@ const { Schema, SchemaTypes, model } = mongoose;
 }
 */}
 const cartItemSchema = new Schema({
-  users._id: { type: String, required: true },
-  products._id: { type: String, required: true },
+  users_id: { type: String, required: true },
+  product_id: { type: String, required: true },
   qty: { type: Number, default: 1 },
 });
 
-const CartItem = mongoose.model<ICartItem>('CartItem', cartItemSchema);
+const CartItem = model('CartItem', cartItemSchema);
 
 export default CartItem;
