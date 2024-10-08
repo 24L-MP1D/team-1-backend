@@ -46,22 +46,58 @@ export const addToOrder = async (req: Request, res: Response) => {
 };
 
 export const getOrders = async (req: Request, res: Response) => {
+  const { status, orderType, maxAmount, minAmount, deliveryDate, minDeliveryDate, maxDeliveryDate }: 
+        { status?: string | null; orderType?: string; maxAmount?: number; minAmount?: number; deliveryDate?: Date; minDeliveryDate?: Date; maxDeliveryDate?: Date; } = req.body;
+
   try {
     const token = req.headers["authtoken"];
-    const userId = jwt.decode(token).id;
+    const decodedToken = jwt.decode(token) as { id: string };
+    const userId = decodedToken.id;
+
     const isAdmin = await Admin.findById(userId);
     const isClient = await User.findById(userId);
+
+    // Create a query object based on filters provided
+    const query: any = {};
+
+    if (status) {
+      query.status = status;
+    }
+    if (orderType) {
+      query.orderType = orderType;
+    }
+    if (minAmount !== undefined) {
+      query.amountPaid = { ...query.amountPaid, $gte: minAmount }; // Greater than or equal to
+    }
+    if (maxAmount !== undefined) {
+      query.amountPaid = { ...query.amountPaid, $lte: maxAmount }; // Less than or equal to
+    }
+    if (deliveryDate) {
+      query.deliveryDate = new Date(deliveryDate); // Convert to Date object
+    }
+    if (minDeliveryDate) {
+      query.deliveryDate = { ...query.deliveryDate, $gte: new Date(minDeliveryDate) }; // Greater than or equal
+    }
+    if (maxDeliveryDate) {
+      query.deliveryDate = { ...query.deliveryDate, $lte: new Date(maxDeliveryDate) }; // Less than or equal
+    }
+
+
     if (isAdmin) {
-      const data = await Order.find();
-      res.status(200).send(data);
+      const data = await Order.find(query); // Fetch all orders with filters for admin
+      return res.status(200).json(data);
     }
+
     if (isClient) {
-      const data = await Order.find({ userId });
-      res.status(200).send(data);
+      query.userId = userId; // Add userId filter for client
+      const data = await Order.find(query); // Fetch client's orders with filters
+      return res.status(200).json(data);
     }
-    console.log(isAdmin);
+
+    return res.status(403).json({ message: 'Access denied' }); // Handle unauthorized access
   } catch (e) {
     console.error(e);
+    return res.status(500).json({ message: 'Internal server error' }); // Handle server errors
   }
 };
 
