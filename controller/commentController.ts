@@ -4,14 +4,14 @@ import {
   createComment,
   deleteComment,
   editComment,
-  getComment,
+  getComment
 } from "../functions/comment";
 
 const commentRouter = Router();
 
 commentRouter
   .post("/comment/create", checkToken, createComment)
-  .get("/comment/getByProdId", checkToken, getComment)
+  .get("/comment/getByProdId", getComment)
   .delete("/comment/delete", checkToken, deleteComment)
   .put("/comment/edit", checkToken, editComment);
 

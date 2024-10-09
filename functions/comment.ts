@@ -10,11 +10,14 @@ export const createComment = async (req: Request, res: Response) => {
 
   try {
     const userId = jwt.decode(token).id;
+    const commentExist = await Comment.findOne({ userId, productId });
+    console.log(commentExist);
+    if (commentExist) return res.status(401).json({ val: "failed" });
     Comment.create({ userId, productId, comment, rating });
-    res.status(200).json({ val: "success" });
+    return res.status(200).json({ val: "success" });
   } catch (e) {
     console.error(e);
-    res.status(500).json({ val: "failed" });
+    return res.status(500).json({ val: "failed" });
   }
 };
 
@@ -23,7 +26,10 @@ export const getComment = async (req: Request, res: Response) => {
   try {
     const query: any = {};
     if (productId) query.productId = productId;
-    const data = await Comment.find({ productId });
+    const data = await Comment.find({ productId }).populate(
+      "userId",
+      "userName"
+    );
     res.status(200).json(data);
   } catch (e) {
     res.status(500).json({ error: e });
@@ -53,7 +59,7 @@ export const editComment = async (req: Request, res: Response) => {
     const selectedComment = await Comment.findOneAndUpdate(
       {
         productId,
-        userId,
+        userId
       },
       { rating, comment }
     );
