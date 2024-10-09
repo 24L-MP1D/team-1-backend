@@ -9,17 +9,29 @@ export const getProducts = async (req: Request, res: Response) => {
     size,
     categoryId,
     name,
-    id
+    id,
+    min,
+    max,
+    startDate,
+    endDate
   }: {
     size: [string] | null;
     categoryId: [string] | null;
     name: string | null;
     id: string | null;
+    min: number;
+    max: number;
+    startDate: Date;
+    endDate: Date;
   } = req.body;
   try {
     const query: any = {};
 
     const token = req.headers["authtoken"];
+
+    if (min) query.price = { $gt: min };
+
+    if (max) query.price = { ...query.price, $lt: max };
 
     if (size && size.length) {
       query.sizes = { $elemMatch: { Name: { $in: size }, qty: { $gt: 0 } } };
@@ -28,8 +40,15 @@ export const getProducts = async (req: Request, res: Response) => {
     if (categoryId && categoryId.length) {
       query.categoryId = { $in: categoryId };
     }
+
     if (name) {
       query.productName = { $regex: `${name}`, $options: "i" };
+    }
+
+    if (startDate || endDate) {
+      query.createdAt = {};
+      if (startDate) query.createdAt.$gte = new Date(startDate);
+      if (endDate) query.createdAt.$lte = new Date(endDate);
     }
 
     if (id) {
@@ -46,7 +65,7 @@ export const getProducts = async (req: Request, res: Response) => {
         }))
       );
     }
-    
+
     const userId = jwt.decode(token).id;
 
     const savedItems = await savedItem.find({ userId });

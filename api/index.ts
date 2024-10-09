@@ -24,6 +24,7 @@ import checkToken from "../functions/checkToken";
 import { uploadRouter } from "../functions/Routers/uploadRouter";
 
 import cartRouter from "../functions/cart";
+import commentRouter from "../controller/commentController";
 import IncomeRouter from "../functions/Routers/IncomeRouter";
 
 connectDB();
@@ -34,11 +35,11 @@ const cors = require("cors");
 
 const app = express();
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: "http://localhost:3001"
+    origin: "http://localhost:3000"
   })
 );
 
@@ -48,6 +49,8 @@ app.use(uploadRouter);
 
 app.use(cartRouter);
 app.use(IncomeRouter);
+
+app.use(commentRouter);
 
 // admin
 
@@ -78,7 +81,6 @@ app.get("/product/getSaved", checkToken, fetchSavedProduct);
 app.post("/order/create", checkToken, addToOrder);
 
 app.post("/order/get", checkToken, getOrders);
-
 
 // app.put("/saved/create", )
 
