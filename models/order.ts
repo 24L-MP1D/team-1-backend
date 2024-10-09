@@ -13,7 +13,7 @@ const orderSchema = new Schema({
   coupon: String,
   description: String,
   orderType: { type: String, enum: ["Take Away", "Delivery"] },
-  details: [{ id: SchemaTypes.ObjectId, amount: Number, size: String }],
+  details: [{ id: SchemaTypes.ObjectId, quantity: Number, size: String }],
   userId: { type: Types.ObjectId, require: true },
   createdAt: { type: Date, default: new Date() },
   updatedAt: { type: Date, default: new Date() }
