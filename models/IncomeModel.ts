@@ -1,4 +1,3 @@
-// src/models/IncomeModel.ts
 import mongoose, { Document, Schema } from 'mongoose';
 
 interface IIncome extends Document {

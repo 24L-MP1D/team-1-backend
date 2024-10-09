@@ -3,6 +3,8 @@ import Order from "../models/order";
 import Product from "../models/product";
 import Admin from "../models/admin";
 import User from "../models/user";
+import CartItem from "../models/CartItem";
+import { Schema } from "mongoose";
 
 const jwt = require("jsonwebtoken");
 
@@ -17,7 +19,7 @@ export const addToOrder = async (req: Request, res: Response) => {
     description,
     amountPaid,
     orderType,
-    details
+    details,
   } = req.body;
 
   try {
@@ -36,8 +38,9 @@ export const addToOrder = async (req: Request, res: Response) => {
       description,
       orderType,
       details,
-      userId
+      userId,
     });
+    await CartItem.deleteMany({ userId });
     res.json("success");
   } catch (e) {
     console.error(e);
@@ -75,7 +78,7 @@ export const updateProductDBOnOrder = async (detail: any) => {
     const newSizes = item.sizes; // Get the existing sizes
 
     // Find the specific size (make sure to use the correct case)
-    const sizeItem = newSizes.find(s => s.Name === detail.size); // Use lowercase 'name'
+    const sizeItem = newSizes.find((s) => s.Name === detail.size); // Use lowercase 'name'
 
     if (sizeItem) {
       sizeItem.qty += detail.amount; // Deduct the amount
