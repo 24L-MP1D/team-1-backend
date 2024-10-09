@@ -46,7 +46,7 @@ export const getProducts = async (req: Request, res: Response) => {
         }))
       );
     }
-
+    
     const userId = jwt.decode(token).id;
 
     const savedItems = await savedItem.find({ userId });

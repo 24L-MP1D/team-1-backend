@@ -24,21 +24,21 @@ import checkToken from "../functions/checkToken";
 import { uploadRouter } from "../functions/Routers/uploadRouter";
 
 import cartRouter from "../functions/cart";
+import IncomeRouter from "../functions/Routers/IncomeRouter";
 
 connectDB();
 
-// src/index.ts
 const express = require("express");
 
 const cors = require("cors");
-// express
+
 const app = express();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 app.use(
   cors({
-    origin: "http://localhost:3000"
+    origin: "http://localhost:3001"
   })
 );
 
@@ -47,6 +47,7 @@ app.use(express.json());
 app.use(uploadRouter);
 
 app.use(cartRouter);
+app.use(IncomeRouter);
 
 // admin
 
@@ -77,6 +78,8 @@ app.get("/product/getSaved", checkToken, fetchSavedProduct);
 app.post("/order/create", checkToken, addToOrder);
 
 app.post("/order/get", checkToken, getOrders);
+
+
 // app.put("/saved/create", )
 
 // app.get("/list", async (req: any, res: any) => {
