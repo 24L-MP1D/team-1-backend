@@ -2,7 +2,7 @@ import {
   fetchSavedProduct,
   getProducts,
   saveProduct,
-  unsaveProduct
+  unsaveProduct,
 } from "../functions/product";
 
 import { createProduct } from "../functions/admin_functions/product";
@@ -12,7 +12,7 @@ import { getCategories } from "../functions/category";
 import {
   checkAdmin,
   createNewAdmin,
-  loginAdmin
+  loginAdmin,
 } from "../functions/admin_functions/adminAccout";
 
 import { addToOrder, getOrders } from "../functions/order";
@@ -24,6 +24,7 @@ import checkToken from "../functions/checkToken";
 import { uploadRouter } from "../functions/Routers/uploadRouter";
 
 import cartRouter from "../functions/cart";
+import commentRouter from "../controller/commentController";
 
 connectDB();
 
@@ -38,7 +39,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: "http://localhost:3000"
+    origin: "http://localhost:3000",
   })
 );
 
@@ -47,6 +48,8 @@ app.use(express.json());
 app.use(uploadRouter);
 
 app.use(cartRouter);
+
+app.use(commentRouter);
 
 // admin
 
