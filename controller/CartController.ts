@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Cart from '../models/CartModel';
+import Cart from '../models/CartItem';
 import fs from 'fs';
 import path from 'path';
 

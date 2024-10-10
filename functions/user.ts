@@ -74,3 +74,26 @@ export const findUser = async (req: Request, res: Response) => {
     return res.send(e);
   }
 };
+export const editUser = async (req: Request, res: Response) => {
+
+  try {
+    const token = req.headers["authtoken"] || "";
+    const decoded = jwtDecode(token);
+    const id = decoded.id;
+    
+    const {
+      userName,
+      phoneNumber,
+      address,
+    } = req.body
+    console.log(userName, address, id)
+    const user = await User.findByIdAndUpdate({_id: id}, {
+      userName,
+      phoneNumber,
+      address,
+    }); 
+    res.send(user);
+} catch (error) {
+    console.error(error);
+    res.status(400).json({ errorMessage: error });
+}}

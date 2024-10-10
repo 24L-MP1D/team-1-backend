@@ -19,7 +19,7 @@ cartRouter.post("/add-to-cart", async (req: Request, res: Response) => {
       cartItem.qty += quantity;
       if (!cartItem.qty) {
         await CartItem.deleteOne({ userId, productId, size });
-        return res.send(200).send("successfully deleted");
+        return res.sendStatus(200).send("successfully deleted");
       }
       await cartItem.save();
     } else {
