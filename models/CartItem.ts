@@ -8,6 +8,6 @@ const cartItemSchema = new Schema({
   qty: { type: Number, default: 1 },
 });
 
-const CartItem = mongoose.model("CartItem", cartItemSchema);
+const Cart = mongoose.model("CartItem", cartItemSchema);
 
-export default CartItem;
+export default Cart;

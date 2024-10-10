@@ -27,7 +27,7 @@ cartRouter.post("/add-to-cart", async (req: Request, res: Response) => {
         userId,
         productId,
         size,
-        qty: quantity
+        qty: quantity,
       });
       await cartItem.save();
     }
