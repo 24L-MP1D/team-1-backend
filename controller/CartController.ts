@@ -6,13 +6,8 @@ import path from "path";
 const jwt = require("jsonwebtoken");
 
 export const addItemToCart = async (req: Request, res: Response) => {
-  const {
-    userId,
-    productId,
-    quantity,
-    selectedSize,
-    availableSizes
-  } = req.body;
+  const { userId, productId, quantity, selectedSize, availableSizes } =
+    req.body;
 
   try {
     let cart: any = await Cart.findOne({ userId });
@@ -22,7 +17,7 @@ export const addItemToCart = async (req: Request, res: Response) => {
     }
 
     const existingItemIndex = cart.items.findIndex(
-      item =>
+      (item) =>
         item.productId.toString() === productId &&
         item.selectedSize === selectedSize
     );
@@ -52,7 +47,7 @@ export const updateItemQuantity = async (req: Request, res: Response) => {
     }
 
     const itemIndex = cart.items.findIndex(
-      item =>
+      (item) =>
         item.productId.toString() === productId &&
         item.selectedSize === selectedSize
     );
@@ -81,7 +76,7 @@ export const removeItemFromCart = async (req: Request, res: Response) => {
     }
 
     cart.items = cart.items.filter(
-      item =>
+      (item) =>
         !(
           item.productId.toString() === productId &&
           item.selectedSize === selectedSize

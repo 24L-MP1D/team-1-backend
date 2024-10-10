@@ -17,7 +17,7 @@ import {
 
 import { addToOrder, getOrders } from "../functions/order";
 
-import { checkUser, createUser, findUser } from "../functions/user";
+import { checkUser, createUser, editUser, findUser } from "../functions/user";
 import connectDB from "../db";
 import checkToken from "../functions/checkToken";
 
@@ -71,6 +71,8 @@ app.post("/user/create", createUser);
 app.get("/user/get", findUser);
 
 app.post("/user/login", checkUser);
+
+app.put("/user/edit", editUser);
 
 app.post("/product/save", checkToken, saveProduct);
 
