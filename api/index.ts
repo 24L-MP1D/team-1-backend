@@ -1,31 +1,22 @@
 import {
-  fetchSavedProduct,
-  getProducts,
-  saveProduct,
-  unsaveProduct
-} from "../functions/product";
-
-import { createProduct } from "../functions/admin_functions/product";
-
-import { getCategories } from "../functions/category";
-
-import {
   checkAdmin,
   createNewAdmin,
-  loginAdmin
+  loginAdmin,
 } from "../functions/admin_functions/adminAccout";
 
-import { addToOrder, getOrders } from "../functions/order";
-
-import { checkUser, createUser, editUser, findUser } from "../functions/user";
 import connectDB from "../db";
-import checkToken from "../functions/checkToken";
 
 import { uploadRouter } from "../functions/Routers/uploadRouter";
+import productController from "../controller/ProductController";
+import orderController from "../controller/orderController";
+
+import { getIncomes } from "../controller/IncomeController";
+
+import userRouter from "../controller/userController";
 
 import cartRouter from "../functions/cart";
+
 import commentRouter from "../controller/commentController";
-import IncomeRouter from "../functions/Routers/IncomeRouter";
 
 connectDB();
 
@@ -37,62 +28,28 @@ const app = express();
 
 const PORT = process.env.PORT || 5000;
 
-app.use(
-  cors({
-    origin: "http://localhost:3000"
-  })
-);
+app.use(cors());
 
 app.use(express.json());
 
 app.use(uploadRouter);
 
 app.use(cartRouter);
-app.use(IncomeRouter);
+
+app.use(productController);
+
+app.use(orderController);
+
+app.use(userRouter);
 
 app.use(commentRouter);
 
 // admin
 
+app.get("/income", checkAdmin, getIncomes);
+
 app.post("/admin/create", createNewAdmin);
 
 app.post("/admin/login", loginAdmin);
-
-// admin end
-
-app.get("/product/category/list", getCategories);
-
-app.post("/product/create", checkAdmin, createProduct);
-
-app.post("/product/list", getProducts);
-
-app.post("/user/create", createUser);
-
-app.get("/user/get", findUser);
-
-app.post("/user/login", checkUser);
-
-app.put("/user/edit", editUser);
-
-app.post("/product/save", checkToken, saveProduct);
-
-app.post("/product/unsave", checkToken, unsaveProduct);
-
-app.get("/product/getSaved", checkToken, fetchSavedProduct);
-
-app.post("/order/create", checkToken, addToOrder);
-
-app.post("/order/get", checkToken, getOrders);
-
-// app.put("/saved/create", )
-
-// app.get("/list", async (req: any, res: any) => {
-//   const firstArticle = await Blog.find({});
-//   res.json(firstArticle);
-// });
-
-// app.get("/", async (req: any, res: any) => {
-//   res.json("success");
-// });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
